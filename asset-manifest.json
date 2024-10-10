@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/codechef/static/css/main.31535ba8.css",
-    "main.js": "/codechef/static/js/main.9988f61d.js",
+    "main.js": "/codechef/static/js/main.d3767f43.js",
     "static/js/453.ade9eb32.chunk.js": "/codechef/static/js/453.ade9eb32.chunk.js",
     "index.html": "/codechef/index.html",
     "main.31535ba8.css.map": "/codechef/static/css/main.31535ba8.css.map",
-    "main.9988f61d.js.map": "/codechef/static/js/main.9988f61d.js.map",
+    "main.d3767f43.js.map": "/codechef/static/js/main.d3767f43.js.map",
     "453.ade9eb32.chunk.js.map": "/codechef/static/js/453.ade9eb32.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.31535ba8.css",
-    "static/js/main.9988f61d.js"
+    "static/js/main.d3767f43.js"
   ]
 }
