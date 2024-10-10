@@ -1,0 +1,54 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const app = express();
+const port = process.env.PORT || 3009;
+const cors = require('cors');
+
+
+app.use(cors());
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/mydb', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+app.use(express.json()); // Middleware to parse JSON bodies
+
+// Mongoose Schema
+const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true }
+});
+
+const User = mongoose.model('User', userSchema);
+
+// Route to handle user registration
+app.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user document
+    const newUser = new User({ username, password: hashedPassword });
+
+    // Save to the database
+    await newUser.save();
+
+    res.status(201).json({ message: 'User registered successfully!' });
+  } catch (error) {
+    console.error('Error registering user:', error);
+    res.status(500).json({ error: 'Error registering user' });
+  }
+});
+
+app.get('/', (req, res) => {
+  res.send('Welcome to your project backend!');
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
