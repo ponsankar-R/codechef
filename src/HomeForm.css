@@ -1,0 +1,62 @@
+.HomeForm {
+    background-color: burlywood;
+    height: auto;
+    width: 80%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 5% auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    position: relative; /* Add this line */
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.HomeNameinput,
+.HomeSizeinput,
+.HomeLocationinput,
+.HomePriceinput,
+.HomeMinPeriodinput,
+.HomeMaxPeriodinput {
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.homeFormSubmit {
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: darkorange;
+    color: white;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+}
+
+.homeformgreat {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .HomeForm {
+        width: 90%;
+        padding: 15px;
+    }
+}
