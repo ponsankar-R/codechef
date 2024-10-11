@@ -1,20 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3009;
-const cors = require('cors');
 
+// Middleware
+app.use(cors());  // Allow all cross-origin requests
+app.use(express.json()); // Middleware to parse JSON bodies
 
-app.use(cors());
 // MongoDB connection
 mongoose.connect('mongodb://localhost:27017/mydb', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
-
-app.use(express.json()); // Middleware to parse JSON bodies
 
 // Mongoose Schema
 const userSchema = new mongoose.Schema({
@@ -29,6 +29,12 @@ app.post('/register', async (req, res) => {
   const { username, password } = req.body;
 
   try {
+    // Check if the username already exists
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ error: 'User already exists' });
+    }
+
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -45,10 +51,12 @@ app.post('/register', async (req, res) => {
   }
 });
 
+// Test route
 app.get('/', (req, res) => {
   res.send('Welcome to your project backend!');
 });
 
+// Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

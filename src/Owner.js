@@ -38,13 +38,13 @@ function Owner() {
                 <IoIosAddCircleOutline />
             </button>
             {isFormOpen && <HomeForm className="homeformnav" setIsFormOpen={setIsFormOpen} />}
-            <div className='homesList'>
+           {/* <div className='homesList'>
                 {homes.map((home, index) => (
                     <div key={index} className='homeItem'>
                         {home}
-                    </div>
+                    </div> 
                 ))}
-            </div>
+            </div>*/}
         </div>
     );
 }
